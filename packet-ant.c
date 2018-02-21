@@ -1315,7 +1315,7 @@ dissect_ant(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree, void *data _U_)
         if (MESG_TX_SYNC == tvb_get_guint8(tvb, offset+i)) {
             memcpy(&cpinfo, pinfo, sizeof cpinfo);
             return dissect_ant(
-                        tvb_new_subset_length_caplen(tvb, offset+i, tvb_captured_length_remaining(tvb, offset)-i, tvb_captured_length_remaining(tvb, offset)-i),
+                        tvb_new_subset(tvb, offset+i, tvb_captured_length_remaining(tvb, offset)-i, tvb_captured_length_remaining(tvb, offset)-i),
                         &cpinfo, tree, NULL);
         }
     }
